@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ActivityRegister extends AppCompatActivity {
-    EditText etUser, etPass, etRepass, etEmail;
+    EditText etUser, etPass, etRepass;
     Button btnRegister, btnGoToLogin;
     DBHelper dbHelper;
 
@@ -30,7 +30,7 @@ public class ActivityRegister extends AppCompatActivity {
             startActivity(intent);
         });
         btnRegister.setOnClickListener(view -> {
-            String user, pass, repass, email;
+            String user, pass, repass;
             user = etUser.getText().toString();
             pass = etPass.getText().toString();
             repass = etRepass.getText().toString();

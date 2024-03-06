@@ -30,6 +30,7 @@ android {
 
 dependencies {
 
+    implementation(libs.material.v1110)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
