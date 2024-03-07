@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#EBDFCC"
     tools:context=".MainActivity">
 
@@ -17,56 +18,65 @@
         app:layout_constraintTop_toTopOf="parent">
 
     </RelativeLayout>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/resetButton"
+            android:id="@+id/resetConfirm"
             android:layout_width="217dp"
             android:layout_height="47dp"
             android:layout_marginStart="97dp"
-            android:layout_marginTop="80dp"
             android:layout_marginEnd="95dp"
             android:background="#4B3832"
-            android:text="Reset Password"
+            android:text="Confirm"
             android:textColor="#EBDFCC"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userName"
-            app:layout_constraintVertical_bias="0.007" />
+            app:layout_constraintTop_toBottomOf="@+id/repassword_Reset"
+            app:layout_constraintVertical_bias="0.181" />
 
         <EditText
-            android:id="@+id/userName"
+            android:id="@+id/password_Reset"
             android:layout_width="260dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="328dp"
             android:ems="10"
-            android:hint="Please enter username"
+            android:hint="Password"
             android:inputType="textPersonName"
             android:textColor="#4B3832"
             android:textColorHint="#4B3832"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/repassword_Reset"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:ems="10"
+            android:hint="Retype Password"
+            android:inputType="textPersonName"
+            android:textColor="#4B3832"
+            android:textColorHint="#4B3832"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_Reset" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/userName_Reset_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="280dp"
-            android:fontFamily="sans-serif-black"
-            android:text="Reset Password"
-            android:textColor="#000000"
-            android:textSize="24sp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/password_Reset"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </RelativeLayout>

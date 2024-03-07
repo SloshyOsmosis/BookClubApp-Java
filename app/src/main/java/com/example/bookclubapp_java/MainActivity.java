@@ -14,9 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     DBHelper dbHelper;
-    Button btnLogin, goToReg;
+    Button btnLogin, goToReg, forgot;
     EditText etUserName, etPass;
-    TextView forgot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
