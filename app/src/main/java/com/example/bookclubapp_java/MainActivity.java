@@ -48,10 +48,9 @@ public class MainActivity extends AppCompatActivity {
 
         forgot.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ActivityForgotPass.class);
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ActivityForgotPass.class);
                 startActivity(intent);
-
             }
         });
     }

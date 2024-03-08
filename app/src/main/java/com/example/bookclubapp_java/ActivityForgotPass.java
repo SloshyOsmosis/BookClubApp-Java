@@ -30,10 +30,10 @@ public class ActivityForgotPass extends AppCompatActivity {
             public void onClick(View view) {
                 String user = userName.getText().toString();
 
-                Boolean checkUser = dbHelper.checkUserName(user);
+                boolean checkUser = dbHelper.checkUserName(user);
                 if(checkUser==true)
                 {
-                    Intent intent = new Intent(getApplicationContext(),ResetActivity.class);
+                    Intent intent = new Intent(ActivityForgotPass.this,ResetActivity.class);
                     intent.putExtra("username", user);
                     startActivity(intent);
                 }else

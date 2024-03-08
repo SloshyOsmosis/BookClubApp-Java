@@ -30,6 +30,9 @@
         <activity
             android:name=".ActivityRegister"
             android:exported="true" />
+        <activity
+            android:name=".ActivityForgotPass"
+            android:exported="true"/>
     </application>
 
 </manifest>

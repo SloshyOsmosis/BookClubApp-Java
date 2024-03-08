@@ -19,7 +19,6 @@ public class ResetActivity extends AppCompatActivity {
     TextView userName;
     EditText pass, repass;
     Button resetconfirm;
-
     DBHelper dbHelper;
 
     @Override
@@ -42,21 +41,22 @@ public class ResetActivity extends AppCompatActivity {
                 String user = userName.getText().toString();
                 String password = pass.getText().toString();
                 String repassword = repass.getText().toString();
-                if(pass.equals(repass)) {
+                if(password.equals(repassword)) {
 
-
-                    Boolean checkpasswordupdate = dbHelper.updatepassword(user, password);
-                    if (checkpasswordupdate == true) {
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                        Toast.makeText(ResetActivity.this, "Password Updated!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(ResetActivity.this, "Password Update failed.", Toast.LENGTH_SHORT).show();
-                    }
-                } else{
+                boolean checkpasswordupdate = dbHelper.updatepassword(user, password);
+                if (checkpasswordupdate == true)
+                {
+                    Intent intent = new Intent(ResetActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(ResetActivity.this, "Password Updated!", Toast.LENGTH_SHORT).show();
+                }else
+                {
+                    Toast.makeText(ResetActivity.this, "Password Update failed.", Toast.LENGTH_SHORT).show();
+                }
+                } else
+                {
                     Toast.makeText(ResetActivity.this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
     }
