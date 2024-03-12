@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DBName = "register.db";
 
@@ -55,5 +57,10 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("password", password);
         long result = myDB.update("users", contentValues, "username = ?", new String[] {username});
         return result != -1;
+    }
+
+    public ArrayList<Books> readBooks(){
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursorBooks = myDB.rawQuery("SELECT * FROM " + TABLE_NAME)
     }
 }
