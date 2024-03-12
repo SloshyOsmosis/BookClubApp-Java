@@ -37,7 +37,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/userName"
-            app:layout_constraintVertical_bias="0.007" />
+            app:layout_constraintVertical_bias="0.007"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/userName"
@@ -45,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:ems="10"
-            android:hint="Please enter username"
+            android:hint="@string/please_enter_username"
             android:inputType="textPersonName"
             android:textColor="#4B3832"
             android:textColorHint="#4B3832"
@@ -60,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="280dp"
             android:fontFamily="sans-serif-black"
-            android:text="Reset Password"
+            android:text="@string/reset_password"
             android:textColor="#000000"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"

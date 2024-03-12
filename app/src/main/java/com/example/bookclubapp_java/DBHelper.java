@@ -23,7 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_USER_PASSWORD = "password";
 
     //Library Table
-    private static final String TABLE_LIBRARY = "my_library";
+    private static final String TABLE_LIBRARY = "library";
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_TITLE = "book_title";
     private static final String COLUMN_AUTHOR = "book_author";
