@@ -2,4 +2,15 @@
     <string name="app_name">BookClubApp-Java</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="select">Select Genre</string>
+    <string-array name="genre">
+        <item>Fiction</item>
+        <item>Thriller</item>
+        <item>Fantasy</item>
+        <item>Science Fiction</item>
+        <item>Short Story</item>
+        <item>Education</item>
+        <item>Biography</item>
+        <item>Young Adult</item>
+    </string-array>
 </resources>

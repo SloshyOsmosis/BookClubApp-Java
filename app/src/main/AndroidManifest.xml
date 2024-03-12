@@ -13,7 +13,12 @@
         android:theme="@style/Theme.BookClubAppJava"
         tools:targetApi="31">
         <activity
+            android:name=".AddReadBook"
+            android:label="Add read books"
+            android:exported="false" />
+        <activity
             android:name=".ResetActivity"
+            android:label="Reset Password"
             android:exported="false" />
         <activity
             android:name=".ActivityUser"
@@ -32,7 +37,7 @@
             android:exported="true" />
         <activity
             android:name=".ActivityForgotPass"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
 
 </manifest>
