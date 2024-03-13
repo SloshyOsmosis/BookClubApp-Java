@@ -8,6 +8,7 @@
     <string name="add_a_book_you_have_read_to_your_collection">Add a book you have read to your collection!</string>
     <string name="read_books">Read Books</string>
     <string name="add_a_book_you_are_currently_reading">Add a book you are currently reading!</string>
+    <string name="update_book">Update Book</string>
     <string-array name="genre">
         <item>Fiction</item>
         <item>Thriller</item>

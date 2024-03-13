@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,7 +24,9 @@ import java.util.ArrayList;
 public class ReadingFragment extends Fragment {
     RecyclerView recyclerView;
     FloatingActionButton add_readbook;
-    ArrayList<String> bookId, bookTitle, bookAuthor, bookGenre, bookISBN;
+
+    TextView readingTitle;
+    ArrayList<String> bookId, bookTitle, bookAuthor, bookGenre,bookPosition, bookISBN;
 
     DBHelper myDB;
     CustomAdapter customAdapter;
@@ -34,10 +37,10 @@ public class ReadingFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reading, container, false);
 
-        recyclerView = view.findViewById(R.id.readingRecycle);
+        recyclerView = view.findViewById(R.id.wantRecycle);
         add_readbook = view.findViewById(R.id.add_read);
 
-        readingTitle = view.findViewById(R.id.TitleReading);
+        readingTitle = view.findViewById(R.id.TitleRead);
         readingTitle.setPaintFlags(readingTitle.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         add_readbook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,12 +55,13 @@ public class ReadingFragment extends Fragment {
         bookTitle = new ArrayList<>();
         bookAuthor = new ArrayList<>();
         bookGenre = new ArrayList<>();
+        bookPosition = new ArrayList<>();
         bookISBN = new ArrayList<>();
 
 
 
         storeReadingData();
-        customAdapter = new CustomAdapter(requireContext(),bookId,bookTitle,bookAuthor,bookGenre,bookISBN);
+        customAdapter = new CustomAdapter(requireContext(),bookId,bookTitle,bookAuthor,bookGenre,bookPosition,bookISBN);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 

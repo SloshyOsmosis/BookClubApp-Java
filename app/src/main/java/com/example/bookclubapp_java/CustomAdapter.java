@@ -1,12 +1,14 @@
 package com.example.bookclubapp_java;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -14,17 +16,19 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList bookId, bookTitle, bookAuthor, bookGenre, bookISBN;
+    private ArrayList bookId, bookTitle, bookAuthor, bookGenre, bookISBN, bookPosition;
 
     CustomAdapter(Context context, ArrayList bookId,
                   ArrayList bookTitle, ArrayList bookAuthor,
-                  ArrayList bookGenre, ArrayList bookISBN){
+                  ArrayList bookGenre, ArrayList bookISBN,
+                  ArrayList bookPosition){
         this.context = context;
         this.bookId = bookId;
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
         this.bookGenre = bookGenre;
         this.bookISBN = bookISBN;
+        this.bookPosition = bookPosition;
 
     }
     @NonNull
@@ -36,12 +40,26 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+
         holder.bookIdText.setText(String.valueOf(bookId.get(position)));
         holder.bookTitleText.setText(String.valueOf(bookTitle.get(position)));
         holder.bookAuthorText.setText(String.valueOf(bookAuthor.get(position)));
         holder.bookGenreText.setText(String.valueOf(bookGenre.get(position)));
         holder.bookISBNText.setText(String.valueOf(bookISBN.get(position)));
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, UpdateActivity.class);
+                intent.putExtra("id", String.valueOf(bookId.get(position)));
+                intent.putExtra("title", String.valueOf(bookTitle.get(position)));
+                intent.putExtra("author", String.valueOf(bookAuthor.get(position)));
+                intent.putExtra("genre", String.valueOf(bookGenre.get(position)));
+                intent.putExtra("ISBN", String.valueOf(bookISBN.get(position)));
+                context.startActivity(intent);
+
+            }
+        });
 
     }
 
@@ -53,6 +71,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView bookIdText, bookTitleText, bookAuthorText, bookGenreText, bookISBNText;
+        CardView mainLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             bookIdText = itemView.findViewById(R.id.bookIdText);
@@ -60,6 +79,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             bookAuthorText = itemView.findViewById(R.id.bookAuthorText);
             bookGenreText = itemView.findViewById(R.id.bookGenreText);
             bookISBNText = itemView.findViewById(R.id.bookISBNText);
+            mainLayout = itemView.findViewById(R.id.mainLayout);
         }
     }
 }

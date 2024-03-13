@@ -3,6 +3,7 @@ package com.example.bookclubapp_java;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,7 +25,8 @@ public class ReadFragment extends Fragment {
 
     RecyclerView recyclerView;
     FloatingActionButton add_readbook;
-    ArrayList<String> bookId, bookTitle, bookAuthor, bookGenre, bookISBN;
+    ArrayList<String> bookId, bookTitle, bookAuthor, bookGenre, bookPosition, bookISBN;
+    TextView readingTitle;
 
     DBHelper myDB;
     CustomAdapter customAdapter;
@@ -36,6 +39,9 @@ public class ReadFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.readRecycle);
         add_readbook = view.findViewById(R.id.add_read);
+
+        readingTitle = view.findViewById(R.id.TitleRead);
+        readingTitle.setPaintFlags(readingTitle.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         add_readbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,10 +55,11 @@ public class ReadFragment extends Fragment {
         bookTitle = new ArrayList<>();
         bookAuthor = new ArrayList<>();
         bookGenre = new ArrayList<>();
+        bookPosition = new ArrayList<>();
         bookISBN = new ArrayList<>();
 
         storeReadData();
-        customAdapter = new CustomAdapter(requireContext(),bookId,bookTitle,bookAuthor,bookGenre,bookISBN);
+        customAdapter = new CustomAdapter(requireContext(),bookId,bookTitle,bookAuthor,bookGenre,bookPosition,bookISBN);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 

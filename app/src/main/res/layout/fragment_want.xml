@@ -8,14 +8,14 @@
     tools:context=".WantFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/readingRecycle"
-        android:layout_width="415dp"
-        android:layout_height="637dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.994" />
+        android:id="@+id/wantRecycle"
+        android:layout_width="match_parent"
+        android:layout_height="556dp"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/add_read"
+        app:layout_constraintTop_toBottomOf="@+id/TitleRead"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="0dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_read"
@@ -32,7 +32,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/TitleReading"
+        android:id="@+id/TitleRead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -41,7 +41,6 @@
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,10 +50,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Add a book you are wanting to read!"
-        app:layout_constraintBottom_toTopOf="@+id/readingRecycle"
+        app:layout_constraintBottom_toTopOf="@+id/wantRecycle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TitleReading"
+        app:layout_constraintTop_toBottomOf="@+id/TitleRead"
         app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

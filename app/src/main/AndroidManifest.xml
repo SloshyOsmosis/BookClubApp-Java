@@ -13,13 +13,16 @@
         android:theme="@style/Theme.BookClubAppJava"
         tools:targetApi="31">
         <activity
-            android:name=".AddReadBook"
-            android:label="Add read books"
+            android:name=".UpdateActivity"
             android:exported="false" />
         <activity
+            android:name=".AddReadBook"
+            android:exported="false"
+            android:label="Add read books" />
+        <activity
             android:name=".ResetActivity"
-            android:label="Reset Password"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Reset Password" />
         <activity
             android:name=".ActivityUser"
             android:exported="false" />
