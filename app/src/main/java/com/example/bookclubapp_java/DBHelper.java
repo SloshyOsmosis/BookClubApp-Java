@@ -70,6 +70,17 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    Cursor readBookData(){
+        String query = "SELECT * FROM " + TABLE_LIBRARY;
+        SQLiteDatabase myDB = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(myDB != null){
+            cursor = myDB.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
