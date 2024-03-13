@@ -3,6 +3,7 @@ package com.example.bookclubapp_java;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -35,6 +36,9 @@ public class ReadingFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.readingRecycle);
         add_readbook = view.findViewById(R.id.add_read);
+
+        readingTitle = view.findViewById(R.id.TitleReading);
+        readingTitle.setPaintFlags(readingTitle.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         add_readbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +54,9 @@ public class ReadingFragment extends Fragment {
         bookGenre = new ArrayList<>();
         bookISBN = new ArrayList<>();
 
-        storeData();
+
+
+        storeReadingData();
         customAdapter = new CustomAdapter(requireContext(),bookId,bookTitle,bookAuthor,bookGenre,bookISBN);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -58,19 +64,21 @@ public class ReadingFragment extends Fragment {
         return view;
     }
 
-    void storeData(){
+    void storeReadingData(){
         Cursor cursor = myDB.readBookData();
         if(cursor.getCount() == 0){
             Toast.makeText(requireContext(),"No data found.", Toast.LENGTH_SHORT).show();
         } else{
             while (cursor.moveToNext()){
-                bookId.add(cursor.getString(0));
-                bookTitle.add(cursor.getString(1));
-                bookAuthor.add(cursor.getString(2));
-                bookGenre.add(cursor.getString(3));
-                bookISBN.add(cursor.getString(4));
+                String status = cursor.getString(5);
+                if (status.equals("Reading")) {
+                    bookId.add(cursor.getString(0));
+                    bookTitle.add(cursor.getString(1));
+                    bookAuthor.add(cursor.getString(2));
+                    bookGenre.add(cursor.getString(3));
+                    bookISBN.add(cursor.getString(4));
+                }
             }
         }
-    }
     }
 }

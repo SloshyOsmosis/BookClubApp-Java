@@ -29,6 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_AUTHOR = "book_author";
     private static final String COLUMN_GENRE = "book_GENRE";
     private static final String COLUMN_ISBN = "book_isbn";
+    private static final String COLUMN_STATUS = "book_status";
 
 
     public DBHelper(@Nullable Context context) {
@@ -47,13 +48,14 @@ public class DBHelper extends SQLiteOpenHelper {
                 COLUMN_TITLE + " TEXT, " +
                 COLUMN_AUTHOR + " TEXT, " +
                 COLUMN_GENRE + " TEXT, " +
-                COLUMN_ISBN + " TEXT);";
+                COLUMN_ISBN + " TEXT, " +
+                COLUMN_STATUS + " TEXT)";
 
         sqLiteDatabase.execSQL(CreateUserTable);
         sqLiteDatabase.execSQL(CreateLibraryTable);
     }
 
-    public void addBook(String title, String author, String genre, String ISBN){
+    public void addBook(String title, String author, String genre, String ISBN, String status){
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -61,6 +63,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_AUTHOR, author);
         cv.put(COLUMN_GENRE, genre);
         cv.put(COLUMN_ISBN, ISBN);
+        cv.put(COLUMN_STATUS, status);
 
         long result = myDB.insert(TABLE_LIBRARY, null, cv);
         if(result == -1){

@@ -7,10 +7,11 @@
     android:layout_height="match_parent"
     android:background="#EBDFCC"
     tools:context=".AddReadBook">
+
     <RelativeLayout
         android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="278dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:background="@drawable/wave__1_"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,12 +24,13 @@
         android:id="@+id/input_Title"
         android:layout_width="228dp"
         android:layout_height="59dp"
-        android:layout_marginTop="276dp"
+        android:layout_marginTop="208dp"
         android:ems="10"
         android:hint="Book Title"
         android:inputType="text"
+        android:textColor="#4B3832"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText,TouchTargetSizeCheck" />
@@ -37,10 +39,11 @@
         android:id="@+id/input_Author"
         android:layout_width="228dp"
         android:layout_height="59dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="Book Author"
         android:inputType="text"
+        android:textColor="#4B3832"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,12 +54,13 @@
         android:id="@+id/input_ISBN"
         android:layout_width="228dp"
         android:layout_height="59dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="ISBN"
         android:inputType="text"
+        android:textColor="#4B3832"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/genreSpinner"
         tools:ignore="TouchTargetSizeCheck" />
@@ -65,23 +69,49 @@
         android:id="@+id/addReadBook"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
+        android:background="#4B3832"
         android:text="Add Book"
         android:textColor="#EBDFCC"
-        android:background="#4B3832"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_ISBN" />
+        app:layout_constraintTop_toBottomOf="@+id/statusSpinner" />
 
     <Spinner
         android:id="@+id/genreSpinner"
         android:layout_width="228dp"
         android:layout_height="59dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="12dp"
         android:autofillHints="Book Genre"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_Author" />
+
+    <Spinner
+        android:id="@+id/statusSpinner"
+        android:layout_width="228dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="12dp"
+        android:autofillHints="Book Status"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_ISBN" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:text="Add book to collection"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

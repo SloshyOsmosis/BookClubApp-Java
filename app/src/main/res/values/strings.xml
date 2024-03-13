@@ -18,4 +18,10 @@
         <item>Biography</item>
         <item>Young Adult</item>
     </string-array>
+
+    <string-array name="status">
+        <item>Read</item>
+        <item>Reading</item>
+        <item>Want to read</item>
+    </string-array>
 </resources>

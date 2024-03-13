@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AddReadBook extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     EditText titleInput, authorInput, ISBNInput;
     Button addReadButton;
-    Spinner spinnerGenre;
+    Spinner spinnerGenre, spinnerStatus;
 
 
     @Override
@@ -30,6 +30,7 @@ public class AddReadBook extends AppCompatActivity implements AdapterView.OnItem
         addReadButton = findViewById(R.id.addReadBook);
 
         spinnerGenre=findViewById(R.id.genreSpinner);
+        spinnerStatus=findViewById(R.id.statusSpinner);
 
         //Created a Spinner for selecting genres.
         ArrayAdapter<CharSequence>adapter=ArrayAdapter.createFromResource(this,R.array.genre, android.R.layout.simple_spinner_item);
@@ -37,16 +38,23 @@ public class AddReadBook extends AppCompatActivity implements AdapterView.OnItem
         spinnerGenre.setAdapter(adapter);
         spinnerGenre.setOnItemSelectedListener(this);
 
+        ArrayAdapter<CharSequence>adapter1=ArrayAdapter.createFromResource(this,R.array.status, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerStatus.setAdapter(adapter1);
+        spinnerStatus.setOnItemSelectedListener(this);
+
         addReadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Grabs the selected genre from the item spinner.
                 String genreState = spinnerGenre.getSelectedItem().toString();
+                String statusState = spinnerStatus.getSelectedItem().toString();
                 DBHelper myDB = new DBHelper(AddReadBook.this);
                 myDB.addBook(titleInput.getText().toString().trim(),
                         authorInput.getText().toString().trim(),
                         genreState,
-                        ISBNInput.getText().toString().trim());
+                        ISBNInput.getText().toString().trim(),
+                        statusState);
             }
         });
 

@@ -51,7 +51,7 @@ public class ReadFragment extends Fragment {
         bookGenre = new ArrayList<>();
         bookISBN = new ArrayList<>();
 
-        storeData();
+        storeReadData();
         customAdapter = new CustomAdapter(requireContext(),bookId,bookTitle,bookAuthor,bookGenre,bookISBN);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -59,17 +59,20 @@ public class ReadFragment extends Fragment {
         return view;
     }
 
-    void storeData(){
+    void storeReadData(){
         Cursor cursor = myDB.readBookData();
         if(cursor.getCount() == 0){
             Toast.makeText(requireContext(),"No data found.", Toast.LENGTH_SHORT).show();
         } else{
             while (cursor.moveToNext()){
-                bookId.add(cursor.getString(0));
-                bookTitle.add(cursor.getString(1));
-                bookAuthor.add(cursor.getString(2));
-                bookGenre.add(cursor.getString(3));
-                bookISBN.add(cursor.getString(4));
+                String status = cursor.getString(5);
+                if (status.equals("Read")) {
+                    bookId.add(cursor.getString(0));
+                    bookTitle.add(cursor.getString(1));
+                    bookAuthor.add(cursor.getString(2));
+                    bookGenre.add(cursor.getString(3));
+                    bookISBN.add(cursor.getString(4));
+                }
             }
         }
     }
