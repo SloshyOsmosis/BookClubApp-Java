@@ -27,10 +27,9 @@ import java.util.ArrayList;
 
 
 public class ReadFragment extends Fragment {
-
     RecyclerView recyclerView;
     FloatingActionButton add_readbook;
-    ArrayList<String> bookId, bookTitle, bookAuthor, bookGenre, bookPosition, bookISBN;
+    ArrayList<String> bookId, bookTitle, bookAuthor, bookGenre, bookStatus, bookISBN;
     TextView readingTitle;
 
     DBHelper myDB;
@@ -60,51 +59,39 @@ public class ReadFragment extends Fragment {
         bookTitle = new ArrayList<>();
         bookAuthor = new ArrayList<>();
         bookGenre = new ArrayList<>();
-        bookPosition = new ArrayList<>();
+        bookStatus = new ArrayList<>();
         bookISBN = new ArrayList<>();
 
-
         storeReadData();
-        customAdapter = new CustomAdapter(this,requireContext(),bookId,bookTitle,bookAuthor,bookGenre,bookPosition,bookISBN);
+        customAdapter = new CustomAdapter(getActivity(),bookId,bookTitle,bookAuthor,bookGenre,bookStatus,bookISBN);
+
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         return view;
     }
 
-    void storeReadData(){
+
+    void storeReadData() {
         Cursor cursor = myDB.readBookData();
-        if(cursor.getCount() == 0){
-            Toast.makeText(requireContext(),"No data found.", Toast.LENGTH_SHORT).show();
-        } else{
-            while (cursor.moveToNext()){
-                String status = cursor.getString(5);
-                if (status.equals("Read")) {
-                    bookId.add(cursor.getString(0));
-                    bookTitle.add(cursor.getString(1));
-                    bookAuthor.add(cursor.getString(2));
-                    bookGenre.add(cursor.getString(3));
-                    bookISBN.add(cursor.getString(4));
+        if (cursor != null && cursor.getCount() > 0) {
+            int statusIndex = cursor.getColumnIndexOrThrow("book_status"); // Retrieve index of "status" column
+            while (cursor.moveToNext()) {
+                String status = cursor.getString(statusIndex); // Retrieve status using index
+                if ("Read".equals(status)) { // Check if status is "Read"
+                    bookId.add(cursor.getString(cursor.getColumnIndexOrThrow("_id")));
+                    bookTitle.add(cursor.getString(cursor.getColumnIndexOrThrow("book_title")));
+                    bookAuthor.add(cursor.getString(cursor.getColumnIndexOrThrow("book_author")));
+                    bookGenre.add(cursor.getString(cursor.getColumnIndexOrThrow("book_GENRE")));
+                    bookISBN.add(cursor.getString(cursor.getColumnIndexOrThrow("book_isbn")));
+                    bookStatus.add(status);
                 }
             }
+        } else {
+            Toast.makeText(requireContext(), "No data found.", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
-            //Clears book values
-            bookId.clear();
-            bookTitle.clear();
-            bookAuthor.clear();
-            bookGenre.clear();
-            bookISBN.clear();
-
-            //Reloads the data
-            storeReadData();
-
-            customAdapter.notifyDataSetChanged();
+        if (cursor != null) {
+            cursor.close();
         }
     }
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -107,6 +108,17 @@ public class DBHelper extends SQLiteOpenHelper {
         return exists;
     }
 
+    public String getUserName(){
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery("SELECT " + COLUMN_USERNAME + " FROM " + TABLE_USERS + " LIMIT 1", null);
+        String username = null;
+        if(cursor.moveToFirst()){
+            username = cursor.getString(0);
+        }
+        cursor.close();
+        return username;
+    }
+
     public boolean checkUser(String username, String password){
         SQLiteDatabase myDB = this.getWritableDatabase();
         Cursor cursor = myDB.rawQuery("select * from " + TABLE_USERS +  " where username=? and password=?", new String[]{username,password});
@@ -121,7 +133,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    void updateLibraryData(String row_id, String title, String author, String genre, String ISBN, String status){
+    void updateLibraryData(String row_id, String title, String author, String genre, String ISBN, String status) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_TITLE, title);
@@ -130,11 +142,12 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_ISBN, ISBN);
         cv.put(COLUMN_STATUS, status);
 
-        long result = myDB.update(TABLE_LIBRARY, cv, "_id=?", new String[]{row_id});
-        if(result == -1){
-            Toast.makeText(context, "Failed to update library...", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(context, "Libray successfully updated. Happy reading!", Toast.LENGTH_SHORT).show();
+        int rowsAffected = myDB.update(TABLE_LIBRARY, cv, COLUMN_ID + "=?", new String[]{row_id});
+        if (rowsAffected > 0) {
+            Log.d("DBHelper", "Rows updated: " + rowsAffected);
+        } else {
+            Log.d("DBHelper", "No rows updated");
+
         }
     }
 }

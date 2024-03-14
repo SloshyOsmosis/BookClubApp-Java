@@ -18,20 +18,21 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList bookId, bookTitle, bookAuthor, bookGenre, bookISBN;
-    Fragment fragment;
+    private ArrayList bookId, bookTitle, bookAuthor, bookGenre, bookISBN, bookStatus;
+    private Activity activity;
 
-    CustomAdapter(Fragment fragment, Context context, ArrayList bookId,
-                  ArrayList bookTitle, ArrayList bookAuthor,
-                  ArrayList bookGenre, ArrayList bookISBN,
-                  ArrayList bookStatus){
-        this.fragment = fragment;
-        this.context = context;
+    CustomAdapter(Activity activity, ArrayList<String> bookId,
+                  ArrayList<String> bookTitle, ArrayList<String> bookAuthor,
+                  ArrayList<String> bookGenre, ArrayList<String> bookISBN,
+                  ArrayList<String> bookStatus){
+        this.activity = activity;
+        this.context = activity.getApplicationContext();
         this.bookId = bookId;
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
         this.bookGenre = bookGenre;
         this.bookISBN = bookISBN;
+        this.bookStatus = bookStatus;
 
     }
     @NonNull
@@ -50,6 +51,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.bookAuthorText.setText(String.valueOf(bookAuthor.get(position)));
         holder.bookGenreText.setText(String.valueOf(bookGenre.get(position)));
         holder.bookISBNText.setText(String.valueOf(bookISBN.get(position)));
+        holder.bookStatusText.setText(String.valueOf(bookStatus.get(position)));
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,8 +62,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 intent.putExtra("genre", String.valueOf(bookGenre.get(position)));
                 intent.putExtra("ISBN", String.valueOf(bookISBN.get(position)));
                 //Refreshes the activity when updating books.
-                fragment.startActivityForResult(intent, 1);
-
+                activity.startActivityForResult(intent, 1);
             }
         });
 
@@ -74,7 +75,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView bookIdText, bookTitleText, bookAuthorText, bookGenreText, bookISBNText;
+        TextView bookIdText, bookTitleText, bookAuthorText, bookGenreText, bookISBNText, bookStatusText;
         CardView mainLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,6 +84,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             bookAuthorText = itemView.findViewById(R.id.bookAuthorText);
             bookGenreText = itemView.findViewById(R.id.bookGenreText);
             bookISBNText = itemView.findViewById(R.id.bookISBNText);
+            bookStatusText = itemView.findViewById(R.id.bookStatusText);
             mainLayout = itemView.findViewById(R.id.mainLayout);
         }
     }
