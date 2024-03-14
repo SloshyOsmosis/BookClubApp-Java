@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.graphics.Paint;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -61,7 +62,7 @@ public class ReadingFragment extends Fragment {
 
 
         storeReadingData();
-        customAdapter = new CustomAdapter(requireContext(),bookId,bookTitle,bookAuthor,bookGenre,bookPosition,bookISBN);
+        customAdapter = new CustomAdapter(this,requireContext(),bookId,bookTitle,bookAuthor,bookGenre,bookPosition,bookISBN);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
@@ -83,6 +84,23 @@ public class ReadingFragment extends Fragment {
                     bookISBN.add(cursor.getString(4));
                 }
             }
+        }
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1){
+            //Clears book values
+            bookId.clear();
+            bookTitle.clear();
+            bookAuthor.clear();
+            bookGenre.clear();
+            bookISBN.clear();
+
+            //Reloads the data
+            storeReadingData();
+
+            customAdapter.notifyDataSetChanged();
         }
     }
 }

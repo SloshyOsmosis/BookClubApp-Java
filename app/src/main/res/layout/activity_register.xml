@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="sans-serif-black"
-        android:text="BestReads"
+        android:text="@string/bestreads"
         android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,15 +42,15 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/literature" />
+        app:srcCompat="@drawable/lil_fella" />
 
     <EditText
         android:id="@+id/userName"
         android:layout_width="260dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="60dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="@string/username"
         android:inputType="textPersonName"
         android:textColor="#4B3832"
         android:textColorHint="#4B3832"
@@ -62,32 +62,34 @@
     <EditText
         android:id="@+id/password"
         android:layout_width="260dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPersonName"
         android:textColor="#4B3832"
         android:textColorHint="#4B3832"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName" />
+        app:layout_constraintTop_toBottomOf="@+id/userName"
+        tools:ignore="TextFields" />
 
     <EditText
         android:id="@+id/retypePassword"
         android:layout_width="260dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Retype Password"
+        android:hint="@string/retype_password"
         android:inputType="textPersonName"
         android:textColor="#4B3832"
         android:textColorHint="#4B3832"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        tools:ignore="TextFields" />
 
     <Button
         android:id="@+id/regButton"
@@ -95,7 +97,7 @@
         android:layout_height="47dp"
         android:layout_marginTop="28dp"
         android:background="#4B3832"
-        android:text="Register"
+        android:text="@string/register"
         android:textColor="#EBDFCC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="Already registered? Login here!"
+        android:text="@string/already_registered_login_here"
         android:textColor="#000000"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"

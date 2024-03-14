@@ -1,5 +1,6 @@
 package com.example.bookclubapp_java;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -16,19 +18,20 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList bookId, bookTitle, bookAuthor, bookGenre, bookISBN, bookPosition;
+    private ArrayList bookId, bookTitle, bookAuthor, bookGenre, bookISBN;
+    Fragment fragment;
 
-    CustomAdapter(Context context, ArrayList bookId,
+    CustomAdapter(Fragment fragment, Context context, ArrayList bookId,
                   ArrayList bookTitle, ArrayList bookAuthor,
                   ArrayList bookGenre, ArrayList bookISBN,
-                  ArrayList bookPosition){
+                  ArrayList bookStatus){
+        this.fragment = fragment;
         this.context = context;
         this.bookId = bookId;
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
         this.bookGenre = bookGenre;
         this.bookISBN = bookISBN;
-        this.bookPosition = bookPosition;
 
     }
     @NonNull
@@ -56,7 +59,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 intent.putExtra("author", String.valueOf(bookAuthor.get(position)));
                 intent.putExtra("genre", String.valueOf(bookGenre.get(position)));
                 intent.putExtra("ISBN", String.valueOf(bookISBN.get(position)));
-                context.startActivity(intent);
+                //Refreshes the activity when updating books.
+                fragment.startActivityForResult(intent, 1);
 
             }
         });

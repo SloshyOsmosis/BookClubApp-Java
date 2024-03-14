@@ -28,7 +28,7 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/literature" />
+        app:srcCompat="@drawable/lil_fella" />
 
     <EditText
         android:id="@+id/userName"

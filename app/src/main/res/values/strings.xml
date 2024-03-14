@@ -9,6 +9,12 @@
     <string name="read_books">Read Books</string>
     <string name="add_a_book_you_are_currently_reading">Add a book you are currently reading!</string>
     <string name="update_book">Update Book</string>
+    <string name="bestreads">BestReads</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="retype_password">Retype Password</string>
+    <string name="register">Register</string>
+    <string name="already_registered_login_here">Already registered? Login here!</string>
     <string-array name="genre">
         <item>Fiction</item>
         <item>Thriller</item>

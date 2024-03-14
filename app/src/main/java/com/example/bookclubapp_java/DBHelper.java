@@ -121,4 +121,20 @@ public class DBHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    void updateLibraryData(String row_id, String title, String author, String genre, String ISBN, String status){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_TITLE, title);
+        cv.put(COLUMN_AUTHOR, author);
+        cv.put(COLUMN_GENRE, genre);
+        cv.put(COLUMN_ISBN, ISBN);
+        cv.put(COLUMN_STATUS, status);
+
+        long result = myDB.update(TABLE_LIBRARY, cv, "_id=?", new String[]{row_id});
+        if(result == -1){
+            Toast.makeText(context, "Failed to update library...", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Libray successfully updated. Happy reading!", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
