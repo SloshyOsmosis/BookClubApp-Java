@@ -59,6 +59,21 @@ public class UpdateActivity extends AppCompatActivity implements AdapterView.OnI
                 author = authorInput.getText().toString().trim();
                 ISBN = ISBNInput.getText().toString().trim();
                 myDB.updateLibraryData(id,title,author,genreState,ISBN,statusState);
+
+                //Refreshes the fragment once a book has been added
+                ReadFragment readFragment = (ReadFragment) getSupportFragmentManager().findFragmentByTag("ReadFragment");
+                if (readFragment != null){
+                    readFragment.refresh();
+                }
+                ReadFragment readingFragment = (ReadFragment) getSupportFragmentManager().findFragmentByTag("ReadingFragment");
+                if (readFragment != null){
+                    readFragment.refresh();
+                }
+                ReadFragment wantFragment = (ReadFragment) getSupportFragmentManager().findFragmentByTag("WantFragment");
+                if (readFragment != null){
+                    readFragment.refresh();
+                }
+                finish();
             }
         });
 

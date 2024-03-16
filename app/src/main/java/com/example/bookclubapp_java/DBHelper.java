@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -74,7 +73,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    Cursor readBookData(){
+    public Cursor readBookData(){
         String query = "SELECT * FROM " + TABLE_LIBRARY;
         SQLiteDatabase myDB = this.getReadableDatabase();
 
@@ -83,6 +82,26 @@ public class DBHelper extends SQLiteOpenHelper {
             cursor = myDB.rawQuery(query, null);
         }
         return cursor;
+    }
+
+    //Search for books
+//    public ArrayList<Book> searchBooks(String searchText){
+//        SQLiteDatabase myDB = this.getReadableDatabase();
+//        String query = "SELECT * FROM " + TABLE_LIBRARY + " WHERE " +
+//                COLUMN_TITLE + " LIKE ? OR " +
+//                COLUMN_AUTHOR + " LIKE ? OR " +
+//                COLUMN_GENRE + " LIKE ? OR "+
+//                COLUMN_ISBN + " LIKE ? OR " +
+//                COLUMN_STATUS + " LIKE ?";
+//        String[] selectionArgs = new String[]{"%" + searchText + "%", "%" + searchText + "%", "%" + searchText + "%", "%" + searchText + "%"};
+//        return myDB.rawQuery(query, selectionArgs);
+//    }
+
+    //Gathers all the books into a method
+    public Cursor getAllBooks(){
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_LIBRARY;
+        return myDB.rawQuery(query,null);
     }
 
     @Override
@@ -142,12 +161,46 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_ISBN, ISBN);
         cv.put(COLUMN_STATUS, status);
 
-        int rowsAffected = myDB.update(TABLE_LIBRARY, cv, COLUMN_ID + "=?", new String[]{row_id});
-        if (rowsAffected > 0) {
-            Log.d("DBHelper", "Rows updated: " + rowsAffected);
+        long rowsAffected = myDB.update(TABLE_LIBRARY, cv, COLUMN_ID + "=?", new String[]{row_id});
+        if (rowsAffected == -1){
+            Toast.makeText(context, "Failed to update library. :(", Toast.LENGTH_SHORT).show();
         } else {
-            Log.d("DBHelper", "No rows updated");
-
+            Toast.makeText(context, "Successfully updated library.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public ArrayList<Book> librarySearch(String searchText){
+        ArrayList<Book> bookList = new ArrayList<>();
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery("SELECT * FROM " + TABLE_LIBRARY + " WHERE " + COLUMN_TITLE + " LIKE ?", new String[]{"%" + searchText + "%"});
+
+        if (cursor.moveToFirst()) {
+            do {
+                int idIndex = cursor.getColumnIndex(COLUMN_ID);
+                int titleIndex = cursor.getColumnIndex(COLUMN_TITLE);
+                int authorIndex = cursor.getColumnIndex(COLUMN_AUTHOR);
+                int genreIndex = cursor.getColumnIndex(COLUMN_GENRE);
+                int isbnIndex = cursor.getColumnIndex(COLUMN_ISBN);
+                int statusIndex = cursor.getColumnIndex(COLUMN_STATUS);
+
+                // Check if column indices are valid
+                if (idIndex >= 0 && titleIndex >= 0 && authorIndex >= 0 && genreIndex >= 0 && isbnIndex >= 0 && statusIndex >= 0) {
+                    int id = cursor.getInt(idIndex);
+                    String title = cursor.getString(titleIndex);
+                    String author = cursor.getString(authorIndex);
+                    String genre = cursor.getString(genreIndex);
+                    String isbn = cursor.getString(isbnIndex);
+                    String status = cursor.getString(statusIndex);
+
+                    // Create a Book object and add it to the list
+                    Book book = new Book(id, title, author, genre, isbn, status);
+                    bookList.add(book);
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        myDB.close();
+
+        return bookList;
     }
 }

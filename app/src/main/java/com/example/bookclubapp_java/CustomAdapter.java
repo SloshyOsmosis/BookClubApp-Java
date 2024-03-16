@@ -18,22 +18,13 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList bookId, bookTitle, bookAuthor, bookGenre, bookISBN, bookStatus;
+    private ArrayList<Book> books;
     private Activity activity;
 
-    CustomAdapter(Activity activity, ArrayList<String> bookId,
-                  ArrayList<String> bookTitle, ArrayList<String> bookAuthor,
-                  ArrayList<String> bookGenre, ArrayList<String> bookISBN,
-                  ArrayList<String> bookStatus){
+    CustomAdapter(Activity activity, ArrayList<Book> books){
         this.activity = activity;
         this.context = activity.getApplicationContext();
-        this.bookId = bookId;
-        this.bookTitle = bookTitle;
-        this.bookAuthor = bookAuthor;
-        this.bookGenre = bookGenre;
-        this.bookISBN = bookISBN;
-        this.bookStatus = bookStatus;
-
+        this.books = books;
     }
     @NonNull
     @Override
@@ -45,22 +36,22 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-
-        holder.bookIdText.setText(String.valueOf(bookId.get(position)));
-        holder.bookTitleText.setText(String.valueOf(bookTitle.get(position)));
-        holder.bookAuthorText.setText(String.valueOf(bookAuthor.get(position)));
-        holder.bookGenreText.setText(String.valueOf(bookGenre.get(position)));
-        holder.bookISBNText.setText(String.valueOf(bookISBN.get(position)));
-        holder.bookStatusText.setText(String.valueOf(bookStatus.get(position)));
+        Book addedBook = books.get(position);
+        holder.bookTitleText.setText(addedBook.getTitle());
+        holder.bookAuthorText.setText(addedBook.getAuthor());
+        holder.bookGenreText.setText(addedBook.getGenre());
+        holder.bookISBNText.setText(addedBook.getIsbn());
+        holder.bookStatusText.setText(addedBook.getStatus());
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, UpdateActivity.class);
-                intent.putExtra("id", String.valueOf(bookId.get(position)));
-                intent.putExtra("title", String.valueOf(bookTitle.get(position)));
-                intent.putExtra("author", String.valueOf(bookAuthor.get(position)));
-                intent.putExtra("genre", String.valueOf(bookGenre.get(position)));
-                intent.putExtra("ISBN", String.valueOf(bookISBN.get(position)));
+                intent.putExtra("id", String.valueOf(addedBook.getId()));
+                intent.putExtra("title", addedBook.getTitle());
+                intent.putExtra("author", addedBook.getAuthor());
+                intent.putExtra("genre", addedBook.getGenre());
+                intent.putExtra("ISBN", addedBook.getIsbn());
+                intent.putExtra("status", addedBook.getStatus());
                 //Refreshes the activity when updating books.
                 activity.startActivityForResult(intent, 1);
             }
@@ -70,8 +61,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
-        return bookId.size();
+        return books.size();
     }
+
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 

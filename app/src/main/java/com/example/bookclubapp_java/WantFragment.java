@@ -25,9 +25,9 @@ import java.util.ArrayList;
 public class WantFragment extends Fragment {
     RecyclerView recyclerView;
     FloatingActionButton add_readbook;
-    ArrayList<String> bookId, bookTitle, bookAuthor, bookGenre, bookStatus, bookISBN;
     TextView readingTitle;
-
+    ArrayList<String> bookStatus = new ArrayList<>();
+    ArrayList<Book> BookList = new ArrayList<>();
     DBHelper myDB;
     CustomAdapter customAdapter;
 
@@ -51,15 +51,12 @@ public class WantFragment extends Fragment {
             }
         });
         myDB = new DBHelper(requireContext());
-        bookId = new ArrayList<>();
-        bookTitle = new ArrayList<>();
-        bookAuthor = new ArrayList<>();
-        bookGenre = new ArrayList<>();
+
+        BookList = new ArrayList<>();
         bookStatus = new ArrayList<>();
-        bookISBN = new ArrayList<>();
 
         storeWantData();
-        customAdapter = new CustomAdapter(getActivity(),bookId,bookTitle,bookAuthor,bookGenre,bookStatus,bookISBN);
+        customAdapter = new CustomAdapter(getActivity(),BookList);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
@@ -73,12 +70,16 @@ public class WantFragment extends Fragment {
             while (cursor.moveToNext()) {
                 String status = cursor.getString(statusIndex); // Retrieve status using index
                 if ("Want to read".equals(status)) { // Check if status is "Read"
-                    bookId.add(cursor.getString(cursor.getColumnIndexOrThrow("_id")));
-                    bookTitle.add(cursor.getString(cursor.getColumnIndexOrThrow("book_title")));
-                    bookAuthor.add(cursor.getString(cursor.getColumnIndexOrThrow("book_author")));
-                    bookGenre.add(cursor.getString(cursor.getColumnIndexOrThrow("book_GENRE")));
-                    bookISBN.add(cursor.getString(cursor.getColumnIndexOrThrow("book_isbn")));
+                    int id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+                    String title = cursor.getString(cursor.getColumnIndexOrThrow("book_title"));
+                    String author = cursor.getString(cursor.getColumnIndexOrThrow("book_author"));
+                    String genre = cursor.getString(cursor.getColumnIndexOrThrow("book_GENRE"));
+                    String isbn = cursor.getString(cursor.getColumnIndexOrThrow("book_isbn"));
                     bookStatus.add(status);
+
+                    // Create a Book object and add it to BookList
+                    Book book = new Book(id, title, author, genre, isbn, status);
+                    BookList.add(book);
                 }
             }
         } else {
@@ -87,5 +88,13 @@ public class WantFragment extends Fragment {
         if (cursor != null) {
             cursor.close();
         }
+    }
+    public void refresh(){
+        BookList.clear();
+        bookStatus.clear();
+
+        storeWantData();
+
+        customAdapter.notifyDataSetChanged();
     }
 }
