@@ -38,6 +38,7 @@
         android:layout_width="166dp"
         android:layout_height="127dp"
         android:layout_marginTop="96dp"
+        android:contentDescription="@string/little_fella"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +50,7 @@
         android:layout_width="260dp"
         android:layout_height="50dp"
         android:layout_marginTop="60dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/username"
         android:inputType="textPersonName"
@@ -59,14 +61,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password"
         android:layout_width="260dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:textColor="#4B3832"
         android:textColorHint="#4B3832"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,14 +77,14 @@
         app:layout_constraintTop_toBottomOf="@+id/userName"
         tools:ignore="TextFields" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/retypePassword"
         android:layout_width="260dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/retype_password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:textColor="#4B3832"
         android:textColorHint="#4B3832"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,8 +95,8 @@
 
     <Button
         android:id="@+id/regButton"
-        android:layout_width="217dp"
-        android:layout_height="47dp"
+        android:layout_width="215dp"
+        android:layout_height="55dp"
         android:layout_marginTop="28dp"
         android:background="#4B3832"
         android:text="@string/register"

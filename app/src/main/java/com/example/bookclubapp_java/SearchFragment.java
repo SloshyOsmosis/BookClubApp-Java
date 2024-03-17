@@ -1,5 +1,6 @@
 package com.example.bookclubapp_java;
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.database.Cursor;
 import android.media.RouteListingPreference;
@@ -27,6 +28,7 @@ public class SearchFragment extends Fragment {
     CustomAdapter customAdapter;
     RecyclerView BookRecycler;
     List<Book> bookList;
+    ArrayList<Book> books;
     DBHelper myDB;
 
     @Override
@@ -37,6 +39,8 @@ public class SearchFragment extends Fragment {
         searchView = view.findViewById(R.id.bookListSearchView);
         BookRecycler = view.findViewById(R.id.allBookRecycler);
 
+        customAdapter = new CustomAdapter(getActivity(), books);
+        customAdapter.setSearchFragment(this);
 
         myDB = new DBHelper(requireContext());
 

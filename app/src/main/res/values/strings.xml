@@ -16,6 +16,8 @@
     <string name="register">Register</string>
     <string name="already_registered_login_here">Already registered? Login here!</string>
     <string name="change_profile_picture">Change Profile Picture</string>
+    <string name="todo">TODO</string>
+    <string name="little_fella">Little Fella</string>
     <string-array name="genre">
         <item>Fiction</item>
         <item>Thriller</item>

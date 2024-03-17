@@ -17,10 +17,10 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
-    private Context context;
-    private ArrayList<Book> books;
-    private Activity activity;
-
+    private final Context context;
+    private final ArrayList<Book> books;
+    private final Activity activity;
+    private Fragment searchFragment;
     CustomAdapter(Activity activity, ArrayList<Book> books){
         this.activity = activity;
         this.context = activity.getApplicationContext();
@@ -34,6 +34,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         return new MyViewHolder(view);
     }
 
+    public void setSearchFragment(Fragment fragment){
+        this.searchFragment = fragment;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         Book addedBook = books.get(position);
@@ -45,7 +49,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Loads the UpdateActivity class.
                 Intent intent = new Intent(context, UpdateActivity.class);
+                //Fills the textInputs with the chosen book values.
                 intent.putExtra("id", String.valueOf(addedBook.getId()));
                 intent.putExtra("title", addedBook.getTitle());
                 intent.putExtra("author", addedBook.getAuthor());
@@ -56,7 +62,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 activity.startActivityForResult(intent, 1);
             }
         });
-
     }
 
     @Override
@@ -66,7 +71,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView bookIdText, bookTitleText, bookAuthorText, bookGenreText, bookISBNText, bookStatusText;
         CardView mainLayout;

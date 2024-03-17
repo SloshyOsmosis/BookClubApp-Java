@@ -3,4 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="navBarColour">#4B3832</color>
+    <color name="darkmaincolor">#4B3832</color>
+    <color name="lightmaincolor">#EBDFCC</color>
 </resources>

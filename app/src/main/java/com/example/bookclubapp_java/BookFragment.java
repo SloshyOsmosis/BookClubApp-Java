@@ -32,9 +32,16 @@ public class BookFragment extends Fragment {
         expReading = view.findViewById(R.id.expandReading);
         expWant = view.findViewById(R.id.expandWant);
 
+        //Underlines the buttons
+        expRead.setPaintFlags(expRead.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        expReading.setPaintFlags(expReading.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        expWant.setPaintFlags(expWant.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+        //Underline the title
         shelf = view.findViewById(R.id.shelves);
         shelf.setPaintFlags(shelf.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
+        //Replaces the current fragment based on which list the user clicks on
         expRead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

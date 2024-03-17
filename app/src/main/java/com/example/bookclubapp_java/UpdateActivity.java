@@ -9,11 +9,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class UpdateActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -36,6 +32,7 @@ public class UpdateActivity extends AppCompatActivity implements AdapterView.OnI
 
         updateButton = findViewById(R.id.updateReadBook);
 
+        //Changes the spinner value
         ArrayAdapter<CharSequence> genreAdapter = ArrayAdapter.createFromResource(this, R.array.genre, android.R.layout.simple_spinner_item);
         genreAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genreInput.setAdapter(genreAdapter);
@@ -58,6 +55,7 @@ public class UpdateActivity extends AppCompatActivity implements AdapterView.OnI
                 title = titleInput.getText().toString().trim();
                 author = authorInput.getText().toString().trim();
                 ISBN = ISBNInput.getText().toString().trim();
+                //Updates the current library book
                 myDB.updateLibraryData(id,title,author,genreState,ISBN,statusState);
 
                 //Refreshes the fragment once a book has been added
@@ -79,6 +77,7 @@ public class UpdateActivity extends AppCompatActivity implements AdapterView.OnI
 
     }
 
+    // Retrieves the chosen book data to display
     void getIntentData(){
         if(getIntent().hasExtra("id") &&
                 getIntent().hasExtra("title") &&

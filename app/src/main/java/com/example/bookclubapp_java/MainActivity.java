@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                boolean isLogged = dbHelper.checkUser(etUserName.getText().toString(), etPass.getText().toString());
+                boolean isLogged = dbHelper.checkUser(etUserName.getText().toString().trim(), etPass.getText().toString().trim());
                 if(isLogged){
                     Intent intent = new Intent(MainActivity.this, ActivityUser.class);
                     startActivity(intent);

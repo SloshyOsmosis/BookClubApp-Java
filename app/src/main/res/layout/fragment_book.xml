@@ -147,4 +147,17 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="301dp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/black"
+        android:layout_height="64dp"
+        android:layout_marginTop="8dp"
+        android:textAlignment="center"
+        android:text="Welcome to your shelves! Here you can choose where you would like to display your books."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shelves" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

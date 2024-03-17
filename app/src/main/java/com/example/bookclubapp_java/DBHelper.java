@@ -84,20 +84,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    //Search for books
-//    public ArrayList<Book> searchBooks(String searchText){
-//        SQLiteDatabase myDB = this.getReadableDatabase();
-//        String query = "SELECT * FROM " + TABLE_LIBRARY + " WHERE " +
-//                COLUMN_TITLE + " LIKE ? OR " +
-//                COLUMN_AUTHOR + " LIKE ? OR " +
-//                COLUMN_GENRE + " LIKE ? OR "+
-//                COLUMN_ISBN + " LIKE ? OR " +
-//                COLUMN_STATUS + " LIKE ?";
-//        String[] selectionArgs = new String[]{"%" + searchText + "%", "%" + searchText + "%", "%" + searchText + "%", "%" + searchText + "%"};
-//        return myDB.rawQuery(query, selectionArgs);
-//    }
-
-    //Gathers all the books into a method
     public Cursor getAllBooks(){
         SQLiteDatabase myDB = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_LIBRARY;
@@ -110,6 +96,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_LIBRARY);
     }
 
+    //This method inserts the data from the sign up page into the database.
     public boolean insertData(String username, String password){
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -119,6 +106,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    //This method is called when checking the username in order to reset the password.
     public boolean checkUserName(String username){
         SQLiteDatabase myDB = this.getWritableDatabase();
         Cursor cursor = myDB.rawQuery("select * from " + TABLE_USERS + " where username=?", new String[]{username});
@@ -127,6 +115,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return exists;
     }
 
+    //This method will be used to fetch the username, this is useful for wanting to display the user's username once they have logged in.
     public String getUserName(){
         SQLiteDatabase myDB = this.getReadableDatabase();
         Cursor cursor = myDB.rawQuery("SELECT " + COLUMN_USERNAME + " FROM " + TABLE_USERS + " LIMIT 1", null);
@@ -138,12 +127,14 @@ public class DBHelper extends SQLiteOpenHelper {
         return username;
     }
 
+    //Checks if there is an existing user in the database
     public boolean checkUser(String username, String password){
         SQLiteDatabase myDB = this.getWritableDatabase();
         Cursor cursor = myDB.rawQuery("select * from " + TABLE_USERS +  " where username=? and password=?", new String[]{username,password});
         return cursor.getCount() > 0;
     }
 
+    //Updates the password to a new one if the user has forgotten.
     public boolean updatepassword(String username, String password){
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -152,6 +143,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    //Updates the library with new values.
     void updateLibraryData(String row_id, String title, String author, String genre, String ISBN, String status) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -169,6 +161,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    //This method will be used to search the recycle view in the SearchFragment.
     public ArrayList<Book> librarySearch(String searchText){
         ArrayList<Book> bookList = new ArrayList<>();
         SQLiteDatabase myDB = this.getReadableDatabase();

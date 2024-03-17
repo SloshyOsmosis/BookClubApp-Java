@@ -49,12 +49,15 @@ public class AddReadBook extends AppCompatActivity implements AdapterView.OnItem
                 //Grabs the selected genre from the item spinner.
                 String genreState = spinnerGenre.getSelectedItem().toString();
                 String statusState = spinnerStatus.getSelectedItem().toString();
+
                 DBHelper myDB = new DBHelper(AddReadBook.this);
+                //Adds book to the database table
                 myDB.addBook(titleInput.getText().toString().trim(),
                         authorInput.getText().toString().trim(),
                         genreState,
                         ISBNInput.getText().toString().trim(),
                         statusState);
+                finish();
             }
         });
 
