@@ -5,4 +5,5 @@
     <color name="navBarColour">#4B3832</color>
     <color name="darkmaincolor">#4B3832</color>
     <color name="lightmaincolor">#EBDFCC</color>
+    <color name="red">#FF0000</color>
 </resources>

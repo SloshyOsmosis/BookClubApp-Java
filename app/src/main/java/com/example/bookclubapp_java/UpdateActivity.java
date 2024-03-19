@@ -1,5 +1,6 @@
 package com.example.bookclubapp_java;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,13 +10,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class UpdateActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     EditText titleInput, authorInput, ISBNInput;
     Spinner genreInput, statusInput;
-    Button updateButton;
+    Button updateButton, deleteButton;
     String id,title, author, genre, ISBN, status;
 
     @Override
@@ -31,6 +33,7 @@ public class UpdateActivity extends AppCompatActivity implements AdapterView.OnI
         statusInput = findViewById(R.id.statusSpinner2);
 
         updateButton = findViewById(R.id.updateReadBook);
+        deleteButton = findViewById(R.id.deleteBook);
 
         //Changes the spinner value
         ArrayAdapter<CharSequence> genreAdapter = ArrayAdapter.createFromResource(this, R.array.genre, android.R.layout.simple_spinner_item);
@@ -44,6 +47,7 @@ public class UpdateActivity extends AppCompatActivity implements AdapterView.OnI
         statusInput.setOnItemSelectedListener(this);
 
         getIntentData();
+        //Update book with new values
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +76,12 @@ public class UpdateActivity extends AppCompatActivity implements AdapterView.OnI
                     readFragment.refresh();
                 }
                 finish();
+            }
+        });
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmDeleteDialog();
             }
         });
 
@@ -109,6 +119,26 @@ public class UpdateActivity extends AppCompatActivity implements AdapterView.OnI
         } else {
             Toast.makeText(this, "No Data.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    void confirmDeleteDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete " + title + "?");
+        builder.setMessage("Are you sure you want to delete " +  title + "?" + " This books status is currently " + status + "...");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                DBHelper myDB = new DBHelper(UpdateActivity.this);
+                myDB.deleteLibraryData(id);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.create().show();
     }
 
     @Override

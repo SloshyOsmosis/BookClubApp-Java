@@ -18,6 +18,12 @@
     <string name="change_profile_picture">Change Profile Picture</string>
     <string name="todo">TODO</string>
     <string name="little_fella">Little Fella</string>
+    <string name="add_book_button">Add Book button</string>
+    <string name="add_book">add_book</string>
+    <string name="book_author">Book Author</string>
+    <string name="isbn">ISBN</string>
+    <string name="add_book2">Add Book</string>
+    <string name="add_book_to_collection">Add book to collection</string>
     <string-array name="genre">
         <item>Fiction</item>
         <item>Thriller</item>

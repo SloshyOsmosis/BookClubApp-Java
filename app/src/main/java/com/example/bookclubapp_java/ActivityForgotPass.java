@@ -30,14 +30,17 @@ public class ActivityForgotPass extends AppCompatActivity {
             public void onClick(View view) {
                 String user = userName.getText().toString();
 
+                //Calls on the checkUserName method in DBHelper to check if the user exists in the database
                 boolean checkUser = dbHelper.checkUserName(user);
                 if(checkUser==true)
                 {
                     Intent intent = new Intent(ActivityForgotPass.this,ResetActivity.class);
+                    //Displays the username in the empty TextView
                     intent.putExtra("username", user);
                     startActivity(intent);
                 }else
                 {
+                    //Toast is displayed when there is no matching username found.
                     Toast.makeText(ActivityForgotPass.this,"User does not exist.", Toast.LENGTH_LONG).show();
                 }
 

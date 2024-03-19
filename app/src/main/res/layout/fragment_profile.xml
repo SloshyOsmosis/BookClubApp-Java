@@ -24,6 +24,7 @@
         android:id="@+id/profilePicture"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_marginTop="4dp"
         android:padding="5dp"
         android:src="@drawable/baseline_pfp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,10 +41,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/logoutButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profilePicture" />
+        app:layout_constraintTop_toBottomOf="@+id/profilePicture"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/changePFP"
@@ -56,6 +59,19 @@
         android:src="@drawable/baseline_photo_camera_24"
         app:layout_constraintBottom_toBottomOf="@+id/profilePicture"
         app:layout_constraintEnd_toEndOf="@+id/profilePicture" />
+
+    <Button
+        android:id="@+id/deleteAccountButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@color/darkmaincolor"
+        android:padding="10dp"
+        android:text="Delete Account"
+        android:textColor="@color/red"
+        app:layout_constraintBottom_toTopOf="@+id/logoutButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/logoutButton"

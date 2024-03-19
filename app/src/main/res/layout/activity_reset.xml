@@ -36,7 +36,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/repassword_Reset"
-            app:layout_constraintVertical_bias="0.181" />
+            app:layout_constraintVertical_bias="0.181"
+            tools:ignore="HardcodedText" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password_Reset"
@@ -51,7 +52,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/repassword_Reset"
@@ -66,7 +68,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password_Reset" />
+            app:layout_constraintTop_toBottomOf="@+id/password_Reset"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/userName_Reset_Text"

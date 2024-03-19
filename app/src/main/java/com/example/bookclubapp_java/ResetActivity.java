@@ -8,11 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class ResetActivity extends AppCompatActivity {
 
@@ -29,7 +25,9 @@ public class ResetActivity extends AppCompatActivity {
         userName = findViewById(R.id.userName_Reset_Text);
         pass = findViewById(R.id.password_Reset);
         repass = findViewById(R.id.repassword_Reset);
+
         resetconfirm = findViewById(R.id.resetConfirm);
+
         dbHelper = new DBHelper(this);
 
         Intent intent = getIntent();
@@ -49,6 +47,9 @@ public class ResetActivity extends AppCompatActivity {
                     Intent intent = new Intent(ResetActivity.this, MainActivity.class);
                     startActivity(intent);
                     Toast.makeText(ResetActivity.this, "Password Updated!", Toast.LENGTH_SHORT).show();
+
+                    //Finishes the activity and takes the user back to the login page to sign up with their new password.
+                    finish();
                 }else
                 {
                     Toast.makeText(ResetActivity.this, "Password Update failed.", Toast.LENGTH_SHORT).show();
@@ -57,6 +58,7 @@ public class ResetActivity extends AppCompatActivity {
                 {
                     Toast.makeText(ResetActivity.this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
     }

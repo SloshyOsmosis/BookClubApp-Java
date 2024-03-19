@@ -69,7 +69,7 @@ public class DBHelper extends SQLiteOpenHelper {
         if(result == -1){
             Toast.makeText(context, "Could not add book.",Toast.LENGTH_SHORT).show();
         } else{
-            Toast.makeText(context,"Book added Successfully",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"Book added Successfully!",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -82,12 +82,6 @@ public class DBHelper extends SQLiteOpenHelper {
             cursor = myDB.rawQuery(query, null);
         }
         return cursor;
-    }
-
-    public Cursor getAllBooks(){
-        SQLiteDatabase myDB = this.getReadableDatabase();
-        String query = "SELECT * FROM " + TABLE_LIBRARY;
-        return myDB.rawQuery(query,null);
     }
 
     @Override
@@ -143,6 +137,16 @@ public class DBHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    void deleteUser(String username){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        long result = myDB.delete(TABLE_USERS, "username=?", new String[]{username});
+        if (result == -1){
+            Toast.makeText(context, "Failed to delete user", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Successfully deleted user from database.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     //Updates the library with new values.
     void updateLibraryData(String row_id, String title, String author, String genre, String ISBN, String status) {
         SQLiteDatabase myDB = this.getWritableDatabase();
@@ -158,6 +162,16 @@ public class DBHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Failed to update library. :(", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(context, "Successfully updated library.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    void deleteLibraryData(String row_id){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        long result = myDB.delete(TABLE_LIBRARY, "_id=?", new String[]{row_id});
+        if (result == -1){
+            Toast.makeText(context, "Failed to delete book.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Successfully deleted book from database.", Toast.LENGTH_SHORT).show();
         }
     }
 

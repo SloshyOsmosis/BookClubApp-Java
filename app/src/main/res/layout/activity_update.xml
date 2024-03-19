@@ -33,7 +33,7 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText,TouchTargetSizeCheck" />
+        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/input_Author2"
@@ -48,7 +48,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_Title2"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/input_ISBN2"
@@ -63,7 +63,7 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/genreSpinner2"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/updateReadBook"
@@ -77,6 +77,21 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/statusSpinner2" />
+
+    <Button
+        android:id="@+id/deleteBook"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="#4B3832"
+        android:text="Delete book"
+        android:textColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/updateReadBook"
+        app:layout_constraintVertical_bias="0.154"
+        tools:ignore="HardcodedText" />
 
     <Spinner
         android:id="@+id/genreSpinner2"
@@ -112,6 +127,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
